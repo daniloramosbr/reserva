@@ -1,0 +1,88 @@
+.cont-reserva {
+  width: 100%;
+  .reserva {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .main-r {
+      background-color: rgb(255, 255, 255);
+      max-width: 50rem;
+      width: 100%;
+      display: flex;
+      position: relative;
+      border-radius: 8px;
+      padding: 1rem;
+      div {
+       padding: 5px;
+        .res {
+          display: flex;
+        flex-direction: column;
+        }
+      }
+      .user {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: rgb(33, 0, 180);
+        border-radius: 8px;
+        color: #ffffff;
+        padding: 5px;
+        span {
+          font-size: 12px;
+        }
+      }
+      .calendar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .hour {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 1px;
+        .button-hour {
+          display: flex;
+          justify-content: center;
+          text-align: center;
+          align-items: center;
+          button:hover {
+            background-color: rgb(187, 187, 187);
+          }
+          button {
+            display: flex;
+            border: 0;
+            background-color: #ffffff;
+            border-radius: 5px;
+            width: 9rem;
+            height: 2rem;
+            border: 0.5px solid rgb(196, 196, 196);
+            transition: all 0.1s linear;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+        .horarios {
+          display: flex;
+          gap: 10px;
+
+          button:hover {
+            background-color: rgb(187, 187, 187);
+          }
+          button {
+            border: 0;
+            background-color: #ffffff;
+            border-radius: 5px;
+            width: 3rem;
+            height: 2rem;
+            border: 0.5px solid rgb(196, 196, 196);
+            transition: all 0.2s linear;
+          }
+        }
+      }
+    }
+  }
+}
