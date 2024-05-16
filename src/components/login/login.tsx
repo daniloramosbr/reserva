@@ -1,17 +1,17 @@
 import "./login.scss";
-import { GoogleLogin, googleLogout } from "@react-oauth/google";
+import { GoogleLogin} from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect} from "react";
 import {ContextJsx} from '../../context/Context'
 
 export default function Login() {
 
   const navigate = useNavigate();
   
-const {data, setData} = useContext(ContextJsx)
+const {setData} = useContext(ContextJsx)
 
   useEffect(()=>{
 
@@ -64,8 +64,8 @@ const {data, setData} = useContext(ContextJsx)
             É necessário fazer login para realizar a reserva. Caso ainda não
             tenha uma conta, crie uma agora mesmo!
           </span>
-          <GoogleLogin
-            width={500}
+         <span className="google"> <GoogleLogin
+            width={300}
             shape="circle"
             text="continue_with"
             onSuccess={(credentialResponse) => {
@@ -78,7 +78,7 @@ const {data, setData} = useContext(ContextJsx)
             onError={() => {
               console.log("Login Failed");
             }}
-          />
+          /></span>
         </main>
       </div>
     </div>

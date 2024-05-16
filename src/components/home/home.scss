@@ -1,6 +1,5 @@
 $primary: blue;
 .cont-home {
-  
   width: 100%;
   .home {
     width: 100%;
@@ -47,9 +46,8 @@ $primary: blue;
       background-color: #ffffff;
       width: 100%;
       max-width: 40rem;
-      border-radius: 7px;
+      border-radius: 7px; 
       flex-direction: column;
-
       display: flex;
       gap: 10px;
       h2 {

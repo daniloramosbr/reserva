@@ -18,8 +18,8 @@ export default function Reserva() {
 
   const handleClick = (index: any) => {
     const New = Array(3).fill("");
-    New[index] = "rgb(204, 204, 204)";
-    setBase(New);
+    New[index] = "rgb(204, 204, 204)"
+    setBase(New)
   };
 
   const navigate = useNavigate();
@@ -42,11 +42,11 @@ export default function Reserva() {
 
     IsLoged();
   }, []);
-  
+
   return (
     <div className="cont-reserva">
       <div className="reserva">
-     {!resApi ?    <main className="main-r">
+     {!resApi ?  <main className="main-r">
           <div className="user">
             <span>{decoded.user}</span>
           </div>
