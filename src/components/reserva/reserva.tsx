@@ -88,7 +88,7 @@ export default function Reserva() {
                   }
                   async function PostReserve() {
                     try {
-                      const res = await axios.post('https://api-reserva-6e2r.onrender.com/reserva', {
+                      const res = await axios.post('https://api-reserva-js.vercel.app/reserva', {
                         user: decoded.id,
                         name: decoded.user,
                         table: data[0],

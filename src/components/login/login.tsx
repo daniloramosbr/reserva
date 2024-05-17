@@ -37,7 +37,7 @@ const {setData} = useContext(ContextJsx)
 
     try {
    
-      const res: any = await axios.post("https://api-reserva-6e2r.onrender.com/login", {     //adicionando no banco de dados do app
+      const res: any = await axios.post("https://api-reserva-js.vercel.app/login", {     //adicionando no banco de dados do app
         username: decoded.name,
         email: decoded.email
       })
