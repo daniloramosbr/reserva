@@ -18,7 +18,7 @@ export default function Reserva() {
 
   const handleClick = (index: any) => {
     const New = Array(3).fill("");
-    New[index] = "rgb(204, 204, 204)"
+    New[index] = ['rgb(33, 0, 180', '#ffffff']
     setBase(New)
   };
 
@@ -51,6 +51,7 @@ export default function Reserva() {
             <span>{decoded.user}</span>
           </div>
           <div className="calendar">
+            <h4>ESCOLHA UMA DATA E UM HORÁRIO</h4>
             <Calendar calendarType="hebrew" onChange={onChange} value={value} />
           </div>
           <div className="hour">
@@ -63,6 +64,7 @@ export default function Reserva() {
                 <button
                   style={{
                     background: v[0],
+                    color: v[1]
                   }}
                   onClick={() => {
                     const t: any = value?.toLocaleString();

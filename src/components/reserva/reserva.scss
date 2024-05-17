@@ -36,6 +36,8 @@
       }
       .calendar {
         display: flex;
+        flex-direction: column;
+        gap: 10px;
         justify-content: center;
         align-items: center;
       }
@@ -46,6 +48,9 @@
         align-items: center;
         width: 100%;
         padding: 1px;
+        h4 {
+          cursor: pointer;
+        }
       
         .button-hour {
           display: flex;
