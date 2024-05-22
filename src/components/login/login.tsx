@@ -4,12 +4,13 @@ import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
-import { useContext, useEffect} from "react";
+import { useContext, useEffect, useState} from "react";
 import {ContextJsx} from '../../context/Context'
 
 export default function Login() {
 
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
   
 const {setData} = useContext(ContextJsx)
 
@@ -44,7 +45,7 @@ const {setData} = useContext(ContextJsx)
 
       setData(res.data)       //envia token com id e 
       Cookies.set("user", res.data.token)   //envia token id e user pro user
-
+      setLoading(false)
       navigate(`/reserva/services/${decoded.name}`)
 
   } catch (err) {
@@ -56,8 +57,8 @@ const {setData} = useContext(ContextJsx)
   return (
     <div className="cont-login">
       <div className="login">
-        <main className="main-login">
-          <h2>
+       
+        {loading ? <div className="custom-loader"></div> :  <main className="main-login">  <h2>
             <ion-icon name="fast-food-outline"></ion-icon> FOOD RESERVAS
           </h2>
           <span>
@@ -73,13 +74,13 @@ const {setData} = useContext(ContextJsx)
               const token: any = credentialResponse.credential;
               Cookies.set('token', token)
               LoginGoogle()
-              
+              setLoading(true)
             }}
             onError={() => {
               console.log("Login Failed");
             }}
-          /></span>
-        </main>
+          /></span></main>  }
+        
       </div>
     </div>
   );

@@ -14,14 +14,15 @@ export default function Reserva() {
   const [value, onChange] = useState<Value>(new Date()); //data
   const [data, setData] = useState<any>(); //todos
   const { mesa } = useContext(ContextJsx);
-  const [resApi, setResApi] = useState<any>()
+  const [resApi, setResApi] = useState<any>();
+  const [error, setError] = useState(false)
+  const [errorMiss, setErrorMiss] = useState(false)
 
   const handleClick = (index: any) => {
     const New = Array(3).fill("");
-    New[index] = ['rgb(33, 0, 180', '#ffffff']
-    setBase(New)
+    New[index] = ["rgb(33, 0, 180", "#ffffff"];
+    setBase(New);
   };
-
   const navigate = useNavigate();
 
   type ValuePiece = Date | null;
@@ -42,85 +43,118 @@ export default function Reserva() {
 
     IsLoged();
   }, []);
-
   return (
     <div className="cont-reserva">
       <div className="reserva">
-     {!resApi ?  <main className="main-r">
-          <div className="user">
-            <span>{decoded.user}</span>
-          </div>
-          <div className="calendar">
-            <h4>ESCOLHA UMA DATA E UM HORÁRIO</h4>
-            <Calendar calendarType="hebrew" onChange={onChange} value={value} />
-          </div>
-          <div className="hour">
-            <h4 onClick={(()=>{
-              navigate('/reserva')
-            })}>MESA {mesa} <ion-icon name="create-outline"></ion-icon></h4>
-
-            <div className="horarios">
-              {base.map((v, index) => (
-                <button
-                  style={{
-                    background: v[0],
-                    color: v[1]
-                  }}
-                  onClick={() => {
-                    const t: any = value?.toLocaleString();
-                    
-                    const part = t.split(", ");
-
-                    handleClick(index);
-                    setData([mesa, part[0], `1${index}:00`]);
-                  }}
-                  key={index}
-                >
-                  {" "}
-                  {`1${index}:00`}{" "}
-                </button>
-              ))}
+        {!resApi ? (
+          <main className="main-r">
+            <div className="user">
+              <span>{decoded.user}</span>
             </div>
-
-            <div className="button-hour">
-              <button
+            <div className="calendar">
+              <h4>ESCOLHA UMA DATA E UM HORÁRIO</h4>
+              <Calendar
+                calendarType="hebrew"
+                onChange={onChange}
+                value={value}
+              />
+            </div>
+            <div className="hour">
+              <h4
                 onClick={() => {
-                  if (data == undefined) {
-                    return
-                  }
-                  async function PostReserve() {
-                    try {
-                      const res = await axios.post('https://api-reserva-js.vercel.app/reserva', {
-                        user: decoded.id,
-                        name: decoded.user,
-                        table: data[0],
-                        day: data[1],
-                        hour: data[2]
-                      })
-                      setResApi(res.data)
-                    } catch (error) {
-                      console.log(error)
-                    }
-                  }
-                  PostReserve()
+                  navigate("/reserva");
                 }}
               >
-                CONTINUAR
+                MESA {mesa} <ion-icon name="create-outline"></ion-icon>
+              </h4>
+
+              <div className="horarios">
+                {base.map((v, index) => (
+                  <button
+                    style={{
+                      background: v[0],
+                      color: v[1],
+                    }}
+                    onClick={() => {
+                      const t: any = value?.toLocaleString();
+
+                      const part = t.split(", ");
+
+                      handleClick(index);
+                      setData([mesa, part[0], `1${index}:00`]);
+                    }}
+                    key={index}
+                  >
+                    
+                    {`1${index}:00`}
+                  </button>
+                ))}
+              </div>
+
+              <div className="button-hour">
+                <button
+                  onClick={() => {
+
+                    if (data == undefined) {
+                      setErrorMiss(true)
+                      setTimeout(() => {
+                        setErrorMiss(false)
+                      }, 3000);
+                      return;
+                    }
+
+                    async function PostReserve() {
+                      try {
+                        const res = await axios.post(
+                          "https://api-reserva-js.vercel.app/reserva",
+                          {
+                            user: decoded.id,
+                            name: decoded.user,
+                            table: data[0],
+                            day: data[1],
+                            hour: data[2],
+                          }
+                        );
+                        setResApi(res.data);
+                      } catch (error) {
+                        setError(true)
+                        setTimeout(() => {
+                          setError(false)
+                        }, 3000);
+                        console.log(error);
+                      }
+                    }
+                    PostReserve();
+                  }}
+                >
+                  CONTINUAR
+                </button>
+              </div>
+              {error && <h3 className="res-error">HORÁRIO INDISPONÍVEL!</h3>}
+              {errorMiss && <h3 className="res-error">ESCOLHA UM HORÁRIO!</h3>}
+            </div>
+          </main>
+        ) : (
+          <main className="main-r">
+            <div>
+              <h2>RESERVA ADICIONADA AO BANCO DE DADOS!</h2>
+              <div className="res">
+                <p>MESA: {resApi.response.table} </p>
+                <p>DATA: {resApi.response.day} </p>
+                <p>HORA: {resApi.response.hour}</p>
+              </div>
+              <button
+                className="button-res"
+                onClick={() => {
+                  setResApi("");
+                  navigate('/reserva')
+                }}
+              >
+                VOLTAR
               </button>
             </div>
-          </div>
-        </main> : <main className="main-r">
-        <div>
-        <h3>RESERVA CRIADA COM SUCESSO!</h3>
-        <div className="res">
-        <span>MESA: {resApi.response.table} </span>
-         <span>DATA:  {resApi.response.day} </span>
-         <span>HORA:  {resApi.response.hour}</span>
-        </div>
-        <button onClick={(()=>{
-          setResApi('')
-        })}>VOLTAR</button></div>
-        </main>}
+          </main>
+        )}
       </div>
     </div>
   );
