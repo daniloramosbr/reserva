@@ -8,23 +8,17 @@ $primary: blue;
     justify-content: center;
     align-items: center;
     .cont-main {
+      padding: 5px;
       .cont-m {
         display: flex;
         flex-direction: column;
-        li:focus {
-          background: red;
-          }
-
-        li: {
-          background-color: rgb(204, 204, 204);
-        }
 
         li {
           display: flex;
           justify-content: space-between;
           height: 3rem;
           align-items: center;
-          padding: 20px;
+         padding-right: 20px;
           span {
             .select {
               color: $primary
@@ -55,17 +49,7 @@ $primary: blue;
         color: $primary;
         margin-top: 10px;
       }
-      button:hover {
-        background-color: rgb(187, 187, 187);
-      }
-      button {
-        width: 100%;
-        color: $primary;
-        border: 0;
-        border-radius: 5px;
-        height: 3rem;
-        transition: all 0.2s linear;
-      }
+  
     }
   }
 }

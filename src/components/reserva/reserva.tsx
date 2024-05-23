@@ -15,8 +15,8 @@ export default function Reserva() {
   const [data, setData] = useState<any>(); //todos
   const { mesa } = useContext(ContextJsx);
   const [resApi, setResApi] = useState<any>();
-  const [error, setError] = useState(false)
-  const [errorMiss, setErrorMiss] = useState(false)
+  const [error, setError] = useState(false);
+  const [errorMiss, setErrorMiss] = useState(false);
 
   const handleClick = (index: any) => {
     const New = Array(3).fill("");
@@ -85,7 +85,6 @@ export default function Reserva() {
                     }}
                     key={index}
                   >
-                    
                     {`1${index}:00`}
                   </button>
                 ))}
@@ -94,11 +93,10 @@ export default function Reserva() {
               <div className="button-hour">
                 <button
                   onClick={() => {
-
                     if (data == undefined) {
-                      setErrorMiss(true)
+                      setErrorMiss(true);
                       setTimeout(() => {
-                        setErrorMiss(false)
+                        setErrorMiss(false);
                       }, 3000);
                       return;
                     }
@@ -117,9 +115,9 @@ export default function Reserva() {
                         );
                         setResApi(res.data);
                       } catch (error) {
-                        setError(true)
+                        setError(true);
                         setTimeout(() => {
-                          setError(false)
+                          setError(false);
                         }, 3000);
                         console.log(error);
                       }
@@ -137,17 +135,17 @@ export default function Reserva() {
         ) : (
           <main className="main-r">
             <div>
-              <h2>RESERVA ADICIONADA AO BANCO DE DADOS!</h2>
+              <h3>RESERVA ADICIONADA AO BANCO DE DADOS!</h3>
               <div className="res">
                 <p>MESA: {resApi.response.table} </p>
                 <p>DATA: {resApi.response.day} </p>
                 <p>HORA: {resApi.response.hour}</p>
               </div>
               <button
-                className="button-res"
+                type="button"
+                className="btn btn-outline-primary"
                 onClick={() => {
-                  setResApi("");
-                  navigate('/reserva')
+                  navigate("/reserva");
                 }}
               >
                 VOLTAR

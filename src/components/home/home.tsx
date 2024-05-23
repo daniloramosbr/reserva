@@ -66,7 +66,9 @@ const {mesa, setMesa} = useContext(ContextJsx)
             )}
           </ul>
 
-          <button
+          <button className="btn btn-outline-primary" style={{
+            height: 45
+          }}
             onClick={() => {
               if (!mesa) {
                 return;
