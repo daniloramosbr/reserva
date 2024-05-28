@@ -1,0 +1,19 @@
+.title-home {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: #ffffff;
+  top: 0;
+  background-color: rgb(20, 69, 228);
+  height: 5rem;
+  ion-icon {
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    font-size: 45px;
+  }
+}

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { ContextJsx } from "../../context/Context";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
+import Header from "../header/header";
 
 export default function Reserva() {
   const [base, setBase] = useState(Array(3).fill(""));
@@ -17,6 +18,7 @@ export default function Reserva() {
   const [resApi, setResApi] = useState<any>();
   const [error, setError] = useState(false);
   const [errorMiss, setErrorMiss] = useState(false);
+
 
   const handleClick = (index: any) => {
     const New = Array(3).fill("");
@@ -45,6 +47,7 @@ export default function Reserva() {
   }, []);
   return (
     <div className="cont-reserva">
+      <Header/>
       <div className="reserva">
         {!resApi ? (
           <main className="main-r">

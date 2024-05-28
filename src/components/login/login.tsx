@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { useContext, useEffect, useState} from "react";
 import {ContextJsx} from '../../context/Context'
+import Header from "../header/header";
 
 export default function Login() {
 
@@ -56,6 +57,7 @@ const {setData} = useContext(ContextJsx)
 
   return (
     <div className="cont-login">
+      <Header/>
       <div className="login">
        
         {loading ? <div className="custom-loader"></div> :  <main className="main-login">  <h2>

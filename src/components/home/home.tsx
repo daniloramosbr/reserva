@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { ContextJsx } from "../../context/Context";
+import Header from "../header/header";
 
 declare global {
   namespace JSX {
@@ -17,6 +18,8 @@ declare global {
 }
 
 export default function Home() {
+
+  const [error, setError] = useState(false)
 
   const user: any = Cookies.get('user');     //funcionando logado
 
@@ -42,20 +45,21 @@ const {mesa, setMesa} = useContext(ContextJsx)
 
   return (
     <div className="cont-home">
+      <Header/>
       <div className="home">
+       
         <main className="cont-main">
+         
           <h2>ESCOLHA SUA MESA:</h2>
-          <ul className="cont-m">
+          <div className="cont-m">
             {cor.map((v, index) => (
                 <li
                   key={index}
                   style={{ backgroundColor: v[0] }}
                   onClick={() =>
-                    
-                    handleClick(index)}
-                >
+                    handleClick(index)}>
                   <h4>
-                    <ion-icon name={v[1] ? v[1] : "ellipse-outline"}></ion-icon>{" "}
+                    <ion-icon name={v[1] ? v[1] : "ellipse-outline"}></ion-icon>
                     MESA {index + 1}
                   </h4>
                   <span>
@@ -64,14 +68,24 @@ const {mesa, setMesa} = useContext(ContextJsx)
                 </li>
               )
             )}
-          </ul>
-
-          <button className="btn btn-outline-primary" style={{
-            height: 45
+          </div>
+           {error && <h3 style={{
+            textAlign: "center",
+            color: '#da1b1b'
+           }}>SELECIONE UMA MESA!</h3>}
+          <button className="btn btn-primary" style={{
+            height: 45,
+            borderRadius: 10,
           }}
             onClick={() => {
               if (!mesa) {
-                return;
+                setError(true)
+                setTimeout(() => {
+
+                  setError(false)
+                  
+                }, 3000);
+                return
               }
 
               {
