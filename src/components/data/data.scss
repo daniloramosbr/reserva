@@ -1,0 +1,69 @@
+.cont-data {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  h1 {
+    text-align: center;
+  }
+  .data {
+    box-shadow: -1px 6px 19px -1px rgba(0, 0, 0, 0.44);
+    -webkit-box-shadow: -1px 6px 19px -1px rgba(0, 0, 0, 0.44);
+    -moz-box-shadow: -1px 6px 19px -1px rgba(0, 0, 0, 0.44);
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 50rem;
+    
+  }
+}
+.cont-onedata {
+width: 100%;
+  display: flex;
+justify-content: space-around;
+  border-bottom: 1px solid gray;
+  padding: 5px;
+  button {
+    background-color: #ffffff;
+    border: 0;
+    ion-icon {
+      color: red;
+      font-size: 30px;
+    }
+  }
+  p {
+    font-size: 23px;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .cont-onedata {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.custom-loader {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: 
+    radial-gradient(farthest-side,#766DF4 94%,#0000) top/16px 16px no-repeat,
+    conic-gradient(#0000 30%,#766DF4);
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 16px),#000 0);
+  animation:s3 1s infinite linear;
+}
+
+@keyframes s3{ 
+  100%{transform: rotate(1turn)}
+}
+.cont-load {
+  display: flex;
+  justify-content: center;
+}

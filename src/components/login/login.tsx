@@ -3,10 +3,10 @@ import { GoogleLogin} from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import axios from "axios";
 import { useContext, useEffect, useState} from "react";
 import {ContextJsx} from '../../context/Context'
 import Header from "../header/header";
+import ApiController from "../../controllers/ApiController";
 
 export default function Login() {
 
@@ -39,10 +39,7 @@ const {setData} = useContext(ContextJsx)
 
     try {
    
-      const res: any = await axios.post("https://api-reserva-js.vercel.app/login", {     //adicionando no banco de dados do app
-        username: decoded.name,
-        email: decoded.email
-      })
+      const res: any = await ApiController.PostLogin(decoded.name, decoded.email)
 
       setData(res.data)       //envia token com id e 
       Cookies.set("user", res.data.token)   //envia token id e user pro user

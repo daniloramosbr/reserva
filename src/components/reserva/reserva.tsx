@@ -9,6 +9,7 @@ import { ContextJsx } from "../../context/Context";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import Header from "../header/header";
+import ApiController from "../../controllers/ApiController";
 
 export default function Reserva() {
   const [base, setBase] = useState(Array(3).fill(""));
@@ -106,16 +107,9 @@ export default function Reserva() {
 
                     async function PostReserve() {
                       try {
-                        const res = await axios.post(
-                          "https://api-reserva-js.vercel.app/reserva",
-                          {
-                            user: decoded.id,
-                            name: decoded.user,
-                            table: data[0],
-                            day: data[1],
-                            hour: data[2],
-                          }
-                        );
+
+                        const res: any = await ApiController.PostReserve(decoded.id, decoded.user, data[0], data[1], data[2])
+                       
                         setResApi(res.data);
                       } catch (error) {
                         setError(true);
@@ -144,7 +138,8 @@ export default function Reserva() {
                 <p>DATA: {resApi.response.day} </p>
                 <p>HORA: {resApi.response.hour}</p>
               </div>
-              <button
+             <div className="cont-btn">
+             <button
                 type="button"
                 className="btn btn-outline-primary"
                 onClick={() => {
@@ -153,6 +148,16 @@ export default function Reserva() {
               >
                 VOLTAR
               </button>
+              <button
+                type="button"
+                className="btn btn-outline-primary"
+                onClick={() => {
+                  navigate("/reserva/data");
+                }}
+              >
+                MINHAS RESERVAS
+              </button>
+             </div>
             </div>
           </main>
         )}

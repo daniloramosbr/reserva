@@ -17,7 +17,10 @@
       position: relative;
       border-radius: 8px;
       padding: 1rem;
- 
+      .cont-btn {
+        display: flex;
+        gap: 10px;
+      }
       .res-error {
         color: rgb(253, 0, 0);
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;

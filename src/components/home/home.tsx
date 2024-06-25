@@ -19,6 +19,8 @@ declare global {
 
 export default function Home() {
 
+  
+
   const [error, setError] = useState(false)
 
   const user: any = Cookies.get('user');     //funcionando logado
